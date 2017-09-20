@@ -36,26 +36,7 @@ class ViewController: UIViewController {
             }
         }
         
-        for combination in winningCombinations
-        {
-            if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]]
-            {
-                gameIsActive = false
-                
-                if gameState[combination[0]] == 1
-                {
-                    label.text = "CROSS HAS WON!"
-                }
-                else
-                {
-                    label.text = "NOUGHT HAS WON!"
-                }
-                
-                playAgainButton.isHidden = false
-                label.isHidden = false
-            }
-        }
-        
+        self.checkWinningCombinations()
         gameIsActive = false
         
         for i in gameState
@@ -70,6 +51,7 @@ class ViewController: UIViewController {
         if gameIsActive == false
         {
             label.text = "IT WAS A DRAW"
+            self.checkWinningCombinations()
             label.isHidden = false
             playAgainButton.isHidden = false
         }
@@ -93,6 +75,28 @@ class ViewController: UIViewController {
         }
     }
     
+    func checkWinningCombinations()
+    {
+        for combination in winningCombinations
+        {
+            if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]]
+            {
+                gameIsActive = false
+                
+                if gameState[combination[0]] == 1
+                {
+                    label.text = "CROSS HAS WON!"
+                }
+                else
+                {
+                    label.text = "NOUGHT HAS WON!"
+                }
+                
+                playAgainButton.isHidden = false
+                label.isHidden = false
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
